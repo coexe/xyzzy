@@ -324,7 +324,7 @@ do_dnd (HDROP hdrop)
 void
 set_ime_caret ()
 {
-  if (app.active_frame.has_caret && app.ime_composition)
+  if (app.active_frame.has_caret)
     {
       HIMC hIMC = app.kbdq.gime.ImmGetContext (app.toplev);
       if (!hIMC)
@@ -341,7 +341,7 @@ set_ime_caret ()
       pt.y += font.offset ().y;
 
       RECT r;
-      int need_rect = (/*!app.kbdq.gime.enable_p () // ‚æ‚¤‚í‚©‚ç‚ñ‚¯‚Ç‚Æ‚è‚ ‚¦‚¸(^^;
+      int need_rect = (/*!app.kbdq.gime.enable_p () // ã‚ˆã†ã‚ã‹ã‚‰ã‚“ã‘ã©ã¨ã‚Šã‚ãˆãš(^^;
                        ||*/ PRIMARYLANGID (app.kbdq.kbd_langid ()) != LANG_KOREAN);
       if (need_rect)
         {
@@ -732,9 +732,9 @@ toplevel_wndproc (HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
           {
             GetWindowRect (hwnd, &nr);
 #if 1
-            /* StatusWindow ‚Ì Font ‚ª•ÏX‚³‚ê‚½ê‡‚ÉAƒNƒ‰ƒCƒAƒ“ƒgƒGƒŠƒA‚ğ
-               ‚»‚ê‚È‚è‚ÌƒTƒCƒY‚É‚µ‚½‚¢‚¾‚¯‚È‚ñ‚¾‚¯‚ÇA‚à‚Á‚Æ‚Ü‚Æ‚à‚È•û–@‚ ‚é?
-               ‚Á‚ÄANT ‚Å‚µ‚©“®‚¢‚Ä‚È‚¢‚¶‚á‚ñB*/
+            /* StatusWindow ã® Font ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã«ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¨ãƒªã‚¢ã‚’
+              ãã‚Œãªã‚Šã®ã‚µã‚¤ã‚ºã«ã—ãŸã„ã ã‘ãªã‚“ã ã‘ã©ã€ã‚‚ã£ã¨ã¾ã¨ã‚‚ãªæ–¹æ³•ã‚ã‚‹?
+              ã£ã¦ã€NT ã§ã—ã‹å‹•ã„ã¦ãªã„ã˜ã‚ƒã‚“ã€‚*/
             WINDOWPOS wp;
             wp.hwnd = hwnd;
             wp.hwndInsertAfter = 0;
